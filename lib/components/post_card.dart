@@ -49,7 +49,11 @@ class _PostCardState extends State<PostCard> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => SecondScreen()));
+                              builder: (context) => SecondScreen(
+                                    id: postData[index].userId!,
+                                    title: postData[index].title!,
+                                    white3: CustomColors.white3,
+                                  )));
                     },
                     child: ListTile(
                       shape: RoundedRectangleBorder(
