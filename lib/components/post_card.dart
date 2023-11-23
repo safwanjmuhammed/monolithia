@@ -36,8 +36,8 @@ class _PostCardState extends State<PostCard> {
   Widget build(BuildContext context) {
     return Expanded(
       child: postData.isEmpty
-          ? Center(
-              child: CircularProgressIndicator(),
+          ? const Center(
+              child: CircularProgressIndicator(color: Colors.black),
             )
           : ListView.builder(
               itemCount: postData.length,
@@ -50,7 +50,8 @@ class _PostCardState extends State<PostCard> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => SecondScreen(
-                                    id: postData[index].userId!,
+                                    userId: postData[index].userId!,
+                                    id: postData[index].id!,
                                     title: postData[index].title!,
                                     white2: CustomColors.white2,
                                   )));

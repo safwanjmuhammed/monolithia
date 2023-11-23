@@ -80,4 +80,16 @@ class ApiService {
     }
     throw Exception('FAILED');
   }
+
+  createPost(int userId, int id, String title, String postBody) async {
+    Map<String, dynamic> body = {
+      "userId": userId,
+      "id": id,
+      "title": title,
+      "body": postBody
+    };
+    final response = await dioService.post(baseUrl('posts'), data: body);
+    print(response.data);
+    print(response.statusCode);
+  }
 }

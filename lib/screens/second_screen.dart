@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:monolithia/models/comment_model.dart';
+import 'package:monolithia/screens/third_screen.dart';
 import 'package:monolithia/services/api_services.dart';
 
 class SecondScreen extends StatefulWidget {
   final int id;
+  final int userId;
   final String title;
   final Color white2;
   const SecondScreen(
-      {super.key, required this.id, required this.title, required this.white2});
+      {super.key,
+      required this.id,
+      required this.title,
+      required this.white2,
+      required this.userId});
 
   @override
   State<SecondScreen> createState() => _SecondScreenState();
@@ -21,7 +27,6 @@ class _SecondScreenState extends State<SecondScreen> {
     final data = await service.fetchComment(widget.id);
     setState(() {
       commmentData = data;
-      print(commmentData[0].body);
     });
   }
 
@@ -52,9 +57,6 @@ class _SecondScreenState extends State<SecondScreen> {
                 const SizedBox(
                   height: 30,
                 ),
-                // IconButton(
-                //     onPressed: () => Navigator.pop(context),
-                //     icon: Icon(Icons.arrow_back)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -66,13 +68,16 @@ class _SecondScreenState extends State<SecondScreen> {
                   'Title',
                   style: TextStyle(fontSize: 20),
                 ),
-                Flexible(child: Text('${widget.title}')),
+                Flexible(child: Text(widget.title)),
                 const Divider(
                   color: Color.fromARGB(255, 203, 202, 202),
                 ),
                 Expanded(
                     child: commmentData.isEmpty
-                        ? Center(child: CircularProgressIndicator())
+                        ? const Center(
+                            child: CircularProgressIndicator(
+                            color: Colors.black,
+                          ))
                         : ListView.builder(
                             itemCount: commmentData.length,
                             itemBuilder: (context, int index) {
@@ -110,7 +115,29 @@ class _SecondScreenState extends State<SecondScreen> {
                                   ],
                                 ),
                               );
-                            }))
+                            })),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Center(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return ThirdScreen(
+                            userId: widget.userId,
+                            id: widget.id,
+                          );
+                        }));
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.black),
+                      child: const Text(
+                        'Add new post',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                )
               ],
             ),
           ),

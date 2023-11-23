@@ -33,15 +33,15 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFf8f9fa),
+      backgroundColor: const Color(0xFFf8f9fa),
       body: SafeArea(
         child: Column(
           children: [
             Center(
                 child: userData.isEmpty
                     ? const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: CircularProgressIndicator(),
+                        padding: EdgeInsets.only(top: 20),
+                        child: CircularProgressIndicator(color: Colors.black),
                       )
                     : Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -68,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               }),
                         ),
                       )),
-          const  PostCard()
+            const PostCard(),
           ],
         ),
       ),
