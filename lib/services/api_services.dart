@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:monolithia/models/comment_model.dart';
 import 'package:monolithia/models/post_model.dart';
 import 'package:monolithia/models/user_model.dart';
 
@@ -21,6 +22,8 @@ class ApiService {
           userData.add(UserModel.fromJson(element));
         }
         return userData;
+      } else {
+        print(response.statusCode.toString());
       }
     } on DioException catch (e) {
       throw e.message.toString();
@@ -39,6 +42,8 @@ class ApiService {
           userData.add(PostModel.fromJson(element));
         }
         return userData;
+      } else {
+        print(response.statusCode.toString());
       }
     } on DioException catch (e) {
       throw e.message.toString();
@@ -54,5 +59,25 @@ class ApiService {
     } on DioException catch (e) {
       print(e.message);
     }
+  }
+
+  Future<List<CommentModel>> fetchComment(int id) async {
+    try {
+      final response = await dioService.get(baseUrl('posts/$id/comments'));
+      print(response.data);
+      final rawData = response.data;
+      List<CommentModel> userData = [];
+      if (response.statusCode == 200) {
+        for (var element in rawData) {
+          userData.add(CommentModel.fromJson(element));
+        }
+        return userData;
+      } else {
+        print(response.statusCode.toString());
+      }
+    } on DioException catch (e) {
+      throw e.message.toString();
+    }
+    throw Exception('FAILED');
   }
 }

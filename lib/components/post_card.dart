@@ -52,7 +52,7 @@ class _PostCardState extends State<PostCard> {
                               builder: (context) => SecondScreen(
                                     id: postData[index].userId!,
                                     title: postData[index].title!,
-                                    white3: CustomColors.white3,
+                                    white2: CustomColors.white2,
                                   )));
                     },
                     child: ListTile(
