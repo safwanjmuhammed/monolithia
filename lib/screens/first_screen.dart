@@ -15,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   ApiService service = ApiService();
   List<UserModel> userData = [];
   String? selectedValue = '';
-  CustomColors customColors = CustomColors();
+  // CustomColors customColors = CustomColors();
 
   getUser() async {
     final data = await service.fetchUsers();

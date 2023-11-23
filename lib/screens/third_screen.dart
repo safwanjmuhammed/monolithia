@@ -18,7 +18,6 @@ class _ThirdScreenState extends State<ThirdScreen> {
   TextEditingController idController = TextEditingController();
   TextEditingController titleCController = TextEditingController();
   TextEditingController bodyController = TextEditingController();
-  CustomColors colors = CustomColors();
 
   @override
   Widget build(BuildContext context) {

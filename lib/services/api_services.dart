@@ -92,8 +92,8 @@ class ApiService {
       final response = await dioService.post(baseUrl('posts'), data: body);
       print(response.data);
       print(response.statusCode);
-    } catch (e) {
-      print(e.toString());
+    } on DioException catch (e) {
+      throw e.message.toString();
     }
   }
 }

@@ -13,7 +13,7 @@ class PostCard extends StatefulWidget {
 
 class _PostCardState extends State<PostCard> {
   List<PostModel> postData = [];
-  CustomColors customColors = CustomColors();
+
   final service = ApiService();
   getPost() async {
     try {
